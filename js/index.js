@@ -1,23 +1,45 @@
-let toDoListContainer, myListArray, myList;
+// eXXX = HTML Element
+// XXX_txt = string variable
+
+let toDoListContainer, myListArray, myList, appName_txt, eAppTitle, eAppName, eAddToDoItem, eAddToDoItemBtn;
+
+appName_txt = 'William\'s To Do List';
 
 toDoListContainer = document.querySelector('#toDoList');
+
+eAppTitle = document.querySelector('title');
+
+eAppName = document.querySelector('h1.appName');
+
+eAddToDoItem = document.querySelector('#addToDoItem_input_txt');
+eAddToDoItemBtn = document.querySelector('#addToDoItem_btn');
+
+eAppTitle.innerText = appName_txt;
+
+eAppName.innerHTML = appName_txt;
 
 myListArray = ['Fix Fence','Wash Car','Clean Interior','Get Groceries','Fly Kite'];
 
 // myListArray = null;
 
-localStorage.setItem('MyList', JSON.stringify(myListArray));
+/* LOCAL STORAGE NOTE */
+/* This will add the files to Local Storage */
+//localStorage.setItem('MyList', JSON.stringify(myListArray));
+//myList = JSON.parse(localStorage.getItem('MyList'));
+/* /LOCAL STORAGE NOTE */
 
-myList = JSON.parse(localStorage.getItem('MyList'));
+myList = myListArray;
 
-if (myList === undefined || myList === null ) {
-    console.log('empty');
-} else {
-    for (let i = 0; i < myList.length; i++ ) {
-        // console.log(myList[i]);
-        buildListItems(i);
+document.addEventListener('DOMContentLoaded', function(){
+    if (myList === undefined || myList === null ) {
+        console.log('empty');
+    } else {
+        for (let i = 0; i < myList.length; i++ ) {
+            console.log(myList[i]);
+            buildListItems(i);
+        }
     }
-}
+});
 
 /* toDoListContainer = ''; */
 /* console.log(myList); */
