@@ -1,7 +1,7 @@
 // eXXX = HTML Element
 // XXX_txt = string variable
 
-let toDoListContainer, myListArray, myList, appName_txt, eAppTitle, eAppName, eAddToDoItem, eAddToDoItemBtn;
+let toDoListContainer, myListArray, myList, appName_txt, eAppTitle, eAppName, eAddToDoItem, eAddToDoItemBtn, checkedArray;
 
 appName_txt = 'William\'s To Do List';
 
@@ -18,15 +18,36 @@ eAppTitle.innerText = appName_txt;
 
 eAppName.innerHTML = appName_txt;
 
-myListArray = ['Fix Fence','Wash Car','Clean Interior','Get Groceries','Fly Kite'];
+myListArray = [
+    {   "item": "Fix Fence",
+        "status": false
+    },
+    {   "item": "Wash Car",
+        "status": false
+    },
+    {   "item": "Clean Interior",
+        "status": false
+    },
+    {   "item": "Get Groceries",
+        "status": true
+    },
+    {   "item": "Fly Kite",
+        "status": false
+    }
+];
 
+myListArray.push({"item":"Drive Truck","status":true});
+
+
+/* NOTE: THIS IS TO TEST IF myListArray is NULL */
 // myListArray = null;
+/* /NOTE: THIS IS TO TEST IF myListArray is NULL */
 
-/* LOCAL STORAGE NOTE */
+/* NOTE: LOCAL STORAGE NOTE */
 /* This will add the files to Local Storage */
 //localStorage.setItem('MyList', JSON.stringify(myListArray));
 //myList = JSON.parse(localStorage.getItem('MyList'));
-/* /LOCAL STORAGE NOTE */
+/* /NOTE: LOCAL STORAGE NOTE */
 
 myList = myListArray;
 
@@ -56,9 +77,12 @@ function buildListItems(i) {
     eInput.className = 'form-check-input me-2';
     // input [type='checkbox'] [value='']
     eInput.setAttribute("type", "checkbox");
-    eInput.setAttribute("value", myList[i]);
+    eInput.setAttribute("value", myList[i].status);
+    if (myList[i].status === true) {
+        eInput.setAttribute("CHECKED", "");
+    }
     // item coffee
-    listItem = document.createTextNode(myList[i]);
+    listItem = document.createTextNode(myList[i].item);
     eLabel.appendChild(eInput);
     eLabel.appendChild(listItem);
 
