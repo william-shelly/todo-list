@@ -5,6 +5,8 @@ let toDoListContainer, myListArray, myList, appName_txt, eAppTitle, eAppName, eA
 
 appName_txt = 'William\'s To Do List';
 
+/* ELEMENTS */
+
 toDoListContainer = document.querySelector('#toDoList');
 
 eAppTitle = document.querySelector('title');
@@ -14,11 +16,16 @@ eAppName = document.querySelector('h1.appName');
 eAddToDoItem = document.querySelector('#addToDoItem_input_txt');
 eAddToDoItemBtn = document.querySelector('#addToDoItem_btn');
 
+/* /ELEMENTS */
+
 eAppTitle.innerText = appName_txt;
 
 eAppName.innerHTML = appName_txt;
 
 myListArray = [
+    {   "item": "ADD DELETE ICON!",
+        "status": false
+    },
     {   "item": "Fix Fence",
         "status": false
     },
@@ -36,7 +43,7 @@ myListArray = [
     }
 ];
 
-myListArray.push({"item":"Drive Truck","status":true});
+// myListArray.push({"item":"Drive Truck","status":true});
 
 
 /* NOTE: THIS IS TO TEST IF myListArray is NULL */
@@ -49,21 +56,7 @@ myListArray.push({"item":"Drive Truck","status":true});
 //myList = JSON.parse(localStorage.getItem('MyList'));
 /* /NOTE: LOCAL STORAGE NOTE */
 
-myList = myListArray;
-
-document.addEventListener('DOMContentLoaded', function(){
-    if (myList === undefined || myList === null ) {
-        console.log('empty');
-    } else {
-        for (let i = 0; i < myList.length; i++ ) {
-            console.log(myList[i]);
-            buildListItems(i);
-        }
-    }
-});
-
-/* toDoListContainer = ''; */
-/* console.log(myList); */
+/* FUNCTIONS */
 
 function buildListItems(i) {
     let eLabel, eInput, listItem;
@@ -88,3 +81,21 @@ function buildListItems(i) {
 
     toDoListContainer.appendChild(eLabel, toDoListContainer);
 }
+
+/* /FUNCTIONS */
+
+/* EVENTS */
+
+document.addEventListener('DOMContentLoaded', function(){
+    myList = myListArray;
+    if (myList === undefined || myList === null ) {
+        console.log('empty');
+    } else {
+        for (let i = 0; i < myList.length; i++ ) {
+            console.log(myList[i]);
+            buildListItems(i);
+        }
+    }
+});
+
+/* /EVENTS */
