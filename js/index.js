@@ -1,7 +1,7 @@
 // eXXX = HTML Element
 // XXX_txt = string variable
 
-let toDoListContainer, toDoListArray, toDoList, appName_txt, eAppTitle, eAppName, eAddToDoItem, eAddToDoItemBtn, eListItemDeleteButton;
+let toDoListContainer, toDoListArray, toDoList, appName_txt, eAppTitle, eAppName, eAddToDoItem, eAddToDoItemBtn, eListItemDeleteButton, deleteBtns;
 
 appName_txt = 'William\'s To Do List';
 
@@ -82,9 +82,9 @@ function buildListItems(i) {
 
     // Delete Button
     eListItemDeleteButton = document.createElement('button');
-    eListItemDeleteButton.className = 'btn bg-transparent text-danger m-0 px-1 py-0 border-0 align-baseline position-absolute end-0';
+    eListItemDeleteButton.className = 'btn bg-transparent text-danger m-0 px-1 py-0 border-0 align-baseline position-absolute end-0 deleteBtns';
     eListItemDeleteButton.setAttribute('type', 'button');
-    eListItemDeleteButton.setAttribute('id', 'deleteBtn' + toDoList[i]);
+    eListItemDeleteButton.setAttribute('id', 'deleteBtn' + i);
     eListItemDeleteButton.innerHTML ='<i class="fas fa-times-circle"></i>';
 
     eLabel.appendChild(eInput);
@@ -109,6 +109,22 @@ document.addEventListener('DOMContentLoaded', function(){
             buildListItems(i);
         }
     }
+
+    deleteBtns = document.querySelectorAll('.deleteBtns');
+
+    if (deleteBtns != null || deleteBtns === undefined) {
+        if (deleteBtns.length > 0) {
+            for (let i = 0; i < deleteBtns.length; i++) {
+                deleteBtns[i].addEventListener(
+                "click",
+                    function(e){
+                        this.parentNode.remove();
+                    }
+                );
+            }
+        }
+    }
+
 });
 
 /* /EVENTS */
