@@ -1,7 +1,8 @@
 // eXXX = HTML Element
 // XXX_txt = string variable
+// XXXBtn
 
-let toDoListContainer, toDoListArray, toDoList, appName_txt, eAppTitle, eAppName, eAddToDoItem, eAddToDoItemBtn, eListItemDeleteButton, deleteBtns;
+let toDoListContainer, toDoListArray, toDoList, appName_txt, eAppTitle, eAppName, eAddToDoItem, eAddToDoItemBtn, eListItemDeleteBtn, eDeleteBtns;
 
 appName_txt = 'William\'s To Do List';
 
@@ -46,9 +47,6 @@ toDoListArray = [
     }
 ];
 
-// toDoListArray.push({"item":"Drive Truck","status":true});
-
-
 /* NOTE: THIS IS TO TEST IF toDoListArray is NULL */
 // toDoListArray = null;
 /* /NOTE: THIS IS TO TEST IF toDoListArray is NULL */
@@ -81,16 +79,15 @@ function buildListItems(i) {
     listItem = document.createTextNode(toDoList[i].item);
 
     // Delete Button
-    eListItemDeleteButton = document.createElement('button');
-    eListItemDeleteButton.className = 'btn bg-transparent text-danger m-0 px-1 py-0 border-0 align-baseline position-absolute end-0 deleteBtns';
-    eListItemDeleteButton.setAttribute('type', 'button');
-    eListItemDeleteButton.setAttribute('id', 'deleteBtn' + i);
-    eListItemDeleteButton.innerHTML ='<i class="fas fa-times-circle"></i>';
+    eListItemDeleteBtn = document.createElement('button');
+    eListItemDeleteBtn.className = 'btn bg-transparent text-danger m-0 px-1 py-0 border-0 align-baseline position-absolute end-0 delete_btn';
+    eListItemDeleteBtn.setAttribute('type', 'button');
+    eListItemDeleteBtn.setAttribute('id', 'deleteBtn' + i);
+    eListItemDeleteBtn.innerHTML ='<i class="fas fa-times-circle"></i>';
 
     eLabel.appendChild(eInput);
     eLabel.appendChild(listItem);
-    eLabel.appendChild(eListItemDeleteButton);
-    
+    eLabel.appendChild(eListItemDeleteBtn);
 
     toDoListContainer.appendChild(eLabel, toDoListContainer);
 }
@@ -110,21 +107,44 @@ document.addEventListener('DOMContentLoaded', function(){
         }
     }
 
-    deleteBtns = document.querySelectorAll('.deleteBtns');
+    eDeleteBtns = document.querySelectorAll('.delete_btn');
 
-    if (deleteBtns != null || deleteBtns === undefined) {
-        if (deleteBtns.length > 0) {
-            for (let i = 0; i < deleteBtns.length; i++) {
-                deleteBtns[i].addEventListener(
+    if (eDeleteBtns !== null || eDeleteBtns !== undefined) {
+        if (eDeleteBtns.length > 0) {
+            for (let i = 0; i < eDeleteBtns.length; i++) {
+                eDeleteBtns[i].addEventListener(
                 "click",
                     function(e){
                         this.parentNode.remove();
+                        toDoList[i].remove();
+                        console.log(toDoList);
                     }
                 );
             }
         }
     }
-
+    if (eAddToDoItemBtn !== null || eAddToDoItemBtn !== undefined) {
+        eAddToDoItemBtn.addEventListener(
+        "click",
+            function(e){
+                toDoList.push({"item":"Drive Truck","status":false});
+            }
+        );
+    }
 });
 
 /* /EVENTS */
+
+/* Tried to add e and i to the init variables list.
+Received an error on
+74 eInput.setAttribute('value', toDoList[i].status);
+
+Need to be able to update array and rebuild HTML do list.
+
+Ask about this in class. What is the best approach.
+
+buildListItems() needs to have functions shared with addListItems()
+
+Need to also build removeListItems() <- This is sort of built.
+
+*/
