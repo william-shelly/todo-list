@@ -24,25 +24,32 @@ eAppTitle.innerText = appName_txt;
 eAppName.innerHTML = appName_txt;
 
 toDoListArray = [
-    {   "item": "WORK ON SPEXTON",
+    {   "id": 0,
+        "item": "WORK ON SPEXTON",
         "status": false
     },
-    {   "item": "WORK ON AIR-O",
+    {   "id": 1,
+        "item": "WORK ON AIR-O",
         "status": false
     },
-    {   "item": "Fix Fence",
+    {   "id": 2,
+        "item": "Fix Fence",
         "status": false
     },
-    {   "item": "Wash Car",
+    {   "id": 3,
+        "item": "Wash Car",
         "status": false
     },
-    {   "item": "Clean Interior",
+    {   "id": 4,
+        "item": "Clean Interior",
         "status": false
     },
-    {   "item": "Get Groceries",
+    {   "id": 5,
+        "item": "Get Groceries",
         "status": true
     },
-    {   "item": "Fly Kite",
+    {   "id": 6,
+        "item": "Fly Kite",
         "status": false
     }
 ];
@@ -92,15 +99,24 @@ function buildListItems(i) {
     toDoListContainer.appendChild(eLabel, toDoListContainer);
 }
 
+function createListItem() {
+    console.log('run create list function');
+}
+function addListItems() {
+    console.log('run add list function');
+}
+function removeListItems(e) {
+    console.log('run remove list function');
+    console.log(e);
+}
+
 /* /FUNCTIONS */
 
 /* EVENTS */
 
 document.addEventListener('DOMContentLoaded', function(){
     toDoList = toDoListArray;
-    if (toDoList === undefined || toDoList === null ) {
-        console.log('empty');
-    } else {
+    if (toDoList !== undefined || toDoList !== null ) {
         for (let i = 0; i < toDoList.length; i++ ) {
             console.log(toDoList[i]);
             buildListItems(i);
@@ -123,6 +139,7 @@ document.addEventListener('DOMContentLoaded', function(){
             }
         }
     }
+
     if (eAddToDoItemBtn !== null || eAddToDoItemBtn !== undefined) {
         eAddToDoItemBtn.addEventListener(
         "click",
