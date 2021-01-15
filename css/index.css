@@ -1,3 +1,6 @@
 h1 {
     color: #555;
 }
+#toDoListAddItemContainer {
+    box-shadow: 0 0px 16px rgba(0,0,0,.2);
+}

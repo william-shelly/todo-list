@@ -114,7 +114,7 @@ function addListItem(listItemTxt, listItemStatus) {
     // create label
     eLabel = document.createElement('label');
     // label .list-group-item
-    eLabel.className = 'list-group-item align-baseline position-relative';
+    eLabel.className = 'list-group-item align-baseline position-relative fade show';
     // create input
     eInput = document.createElement('input');
     // input .form-check-input .me-0
@@ -183,6 +183,8 @@ document.addEventListener('DOMContentLoaded', function(){
                     toDoList.push({"id": toDoList[toDoList.length - 1].id + 1 ,"item": AddToDoItemValue ,"status":false});
                 addListItem(AddToDoItemValue, "false")
                 console.log(toDoList);
+                eAddToDoItem.focus();
+                eAddToDoItem.value = '';
                 }
             }
         );
@@ -191,6 +193,7 @@ document.addEventListener('DOMContentLoaded', function(){
     /* This adds padding to the toDoListApp based on the height of the toDoListAddItemContainer */
     toDoListAddItemContainerHeight = toDoListAddItemContainer.offsetHeight;
     toDoListApp.style.cssText = 'margin-bottom: ' +  toDoListAddItemContainerHeight + 'px;';
+    eAddToDoItem.focus();
 });
 
 /* /EVENTS */
