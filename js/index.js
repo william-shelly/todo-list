@@ -129,9 +129,8 @@ function addListItem(listItemTxt, listItemStatus) {
     eListItemDeleteBtn = document.createElement('button');
     eListItemDeleteBtn.className = 'btn bg-transparent text-danger m-0 px-1 py-0 border-0 align-baseline position-absolute end-0 delete_btn';
     eListItemDeleteBtn.setAttribute('type', 'button');
-    eListItemDeleteBtn.setAttribute('id', toDoList[toDoList.length - 1].id + 1);
+    eListItemDeleteBtn.setAttribute('id', 'deleteBtn' + toDoList[toDoList.length - 1]);
 
-    
     eListItemDeleteBtn.innerHTML ='<i class="fas fa-times-circle"></i>';
 
     eLabel.appendChild(eInput);
