@@ -11,18 +11,20 @@
     <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
-    <div class="container py-4">
+    <div id="toDoListApp" class="container py-4">
         <h1 class="appName"></h1>
         <div id="toDoList" class="list-group">
         </div>
     </div>
-    <div class="container fixed-bottom">
-        <div class="row">
-            <div class="col">
-                <input id="addToDoItem_input_txt" type="text" class="form-control"  placeholder="Add To Do Item">
-            </div>
-            <div class="col-auto">
-                <button id="addToDoItem_btn" type="button" class="btn btn-success mb-3 border-success border-0 rounded-circle"><i class="fas fa-plus"></i></button>
+    <div id="toDoListAddItemContainer" class="container-fluid fixed-bottom bg-white py-4 border-top fixed-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <input id="addToDoItem_input_txt" type="text" class="form-control"  placeholder="Add To Do Item">
+                </div>
+                <div class="col-auto">
+                    <button id="addToDoItem_btn" type="button" class="btn btn-success mb-3 border-success border-0 rounded-circle"><i class="fas fa-plus"></i></button>
+                </div>
             </div>
         </div>
     </div>

@@ -2,11 +2,15 @@
 // XXX_txt = string variable
 // XXXBtn
 
-let toDoListContainer, toDoListArray, toDoList, appName_txt, eAppTitle, eAppName, eAddToDoItem, eAddToDoItemBtn, eListItemDeleteBtn, eDeleteBtns;
+let toDoListApp, toDoListAddItemContainer, toDoListContainer, toDoListArray, toDoList, appName_txt, eAppTitle, eAppName, eAddToDoItem, eAddToDoItemBtn, eListItemDeleteBtn, eDeleteBtns, toDoListAddItemContainerHeight;
 
 appName_txt = 'William\'s To Do List';
 
 /* ELEMENTS */
+
+toDoListApp = document.querySelector('#toDoListApp');
+
+toDoListAddItemContainer = document.querySelector('#toDoListAddItemContainer');
 
 toDoListContainer = document.querySelector('#toDoList');
 
@@ -15,6 +19,7 @@ eAppTitle = document.querySelector('title');
 eAppName = document.querySelector('h1.appName');
 
 eAddToDoItem = document.querySelector('#addToDoItem_input_txt');
+
 eAddToDoItemBtn = document.querySelector('#addToDoItem_btn');
 
 /* /ELEMENTS */
@@ -102,10 +107,40 @@ function buildListItems(i) {
 function createListItem() {
     console.log('run create list function');
 }
-function addListItems() {
+function addListItem(listItemTxt, listItemStatus) {
     console.log('run add list function');
+
+    let eLabel, eInput, listItem;
+    // create label
+    eLabel = document.createElement('label');
+    // label .list-group-item
+    eLabel.className = 'list-group-item align-baseline position-relative';
+    // create input
+    eInput = document.createElement('input');
+    // input .form-check-input .me-0
+    eInput.className = 'form-check-input m-0 me-2 align-baseline';
+    // input [type='checkbox'] [value='']
+    eInput.setAttribute('type', 'checkbox');
+    eInput.setAttribute('value', listItemStatus);
+    // item coffee
+    listItem = document.createTextNode(listItemTxt);
+
+    // Delete Button
+    eListItemDeleteBtn = document.createElement('button');
+    eListItemDeleteBtn.className = 'btn bg-transparent text-danger m-0 px-1 py-0 border-0 align-baseline position-absolute end-0 delete_btn';
+    eListItemDeleteBtn.setAttribute('type', 'button');
+    eListItemDeleteBtn.setAttribute('id', toDoList[toDoList.length - 1].id + 1);
+
+    
+    eListItemDeleteBtn.innerHTML ='<i class="fas fa-times-circle"></i>';
+
+    eLabel.appendChild(eInput);
+    eLabel.appendChild(listItem);
+    eLabel.appendChild(eListItemDeleteBtn);
+
+    toDoListContainer.appendChild(eLabel, toDoListContainer);
 }
-function removeListItems(e) {
+function removeListItem(e) {
     console.log('run remove list function');
     console.log(e);
 }
@@ -143,11 +178,20 @@ document.addEventListener('DOMContentLoaded', function(){
     if (eAddToDoItemBtn !== null || eAddToDoItemBtn !== undefined) {
         eAddToDoItemBtn.addEventListener(
         "click",
-            function(e){
-                toDoList.push({"item":"Drive Truck","status":false});
+            function(e,i){
+                let AddToDoItemValue = eAddToDoItem.value;
+                if ( AddToDoItemValue !== '') {
+                    toDoList.push({"id": toDoList[toDoList.length - 1].id + 1 ,"item": AddToDoItemValue ,"status":false});
+                addListItem(AddToDoItemValue, "false")
+                console.log(toDoList);
+                }
             }
         );
     }
+
+    /* This adds padding to the toDoListApp based on the height of the toDoListAddItemContainer */
+    toDoListAddItemContainerHeight = toDoListAddItemContainer.offsetHeight;
+    toDoListApp.style.cssText = 'margin-bottom: ' +  toDoListAddItemContainerHeight + 'px;';
 });
 
 /* /EVENTS */
