@@ -4,3 +4,8 @@ h1 {
 #toDoListAddItemContainer {
     box-shadow: 0 0px 16px rgba(0,0,0,.2);
 }
+
+.list-group-item:hover {
+    background: #efefef;
+    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 50%, rgba(239,239,239,1) 100%);
+}
