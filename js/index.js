@@ -56,6 +56,8 @@ toDoList = [
     }
 ];
 
+// toDoList = [];
+
 /* .toDoListArray */
 
 addToDoItem.addEventListener('click', addListItem);
@@ -88,13 +90,23 @@ function showListItems(i) {
         listCheckbox.className = 'form-check-input m-0 me-2 align-baseline';
         // input [type='checkbox'] [value='']
         listCheckbox.setAttribute('type', 'checkbox');
-        listCheckbox.addEventListener('change', function(event) {
-            if (event.target.checked) {
-                event.target.nextSibling.classList.add('done');
+        if (toDoList[i].status === true) {
+            listCheckbox.setAttribute('CHECKED', '');
+        }
+        listCheckbox.addEventListener('change', function(e) {
+            if (e.target.checked) {
+                e.target.nextSibling.classList.add('done');
+                console.log('statusChecker true');
+                toDoList[i].status = true;
+                listCheckbox.setAttribute('CHECKED', '');
             }
             else {
-                event.target.nextSibling.classList.remove('done');
+                e.target.nextSibling.classList.remove('done');
+                console.log('statusChecker false');
+                toDoList[i].status = false;
+                listCheckbox.removeAttribute('CHECKED');
             }
+            console.log(toDoList);
         });
         listCheckbox.setAttribute('value', toDoList[i].status);
         // item coffee
@@ -107,7 +119,7 @@ function showListItems(i) {
         let listItemDeleteBtn = document.createElement('button');
         listItemDeleteBtn.className = 'btn bg-transparent text-danger m-0 px-1 py-0 border-0 align-baseline position-absolute end-0 delete_btn';
         listItemDeleteBtn.setAttribute('type', 'button');
-        listItemDeleteBtn.setAttribute('id', 'deleteBtn' + toDoList[toDoList.length - 1]);
+        // listItemDeleteBtn.setAttribute('id', 'deleteBtn' + toDoList[toDoList.length - 1]);
 
         listItemDeleteBtn.innerHTML ='<i class="fas fa-times-circle"></i>';
         listItemDeleteBtn.addEventListener('click', removeListItem);
@@ -123,22 +135,13 @@ function showListItems(i) {
 
 
 function removeListItem(e) {
-
     toDoList = toDoList.filter(function(i) {
         if (i.item == e.target.parentNode.parentNode.querySelector('.list-item').innerText) {
-            console.log('false');
-            // console.log('item: ' + item);
-            // console.log(e.target.parentNode.parentNode.querySelector('.list-item').innerText);
             return false;
         }
         else {
-            console.log('true');
-            // console.log('item: ' + item);
-            // console.log(e.target.parentNode.parentNode.querySelector('.list-item').innerText);
             return true;
         }
     });
-
     showListItems();
-
 }
