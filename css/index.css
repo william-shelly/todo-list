@@ -1,3 +1,7 @@
+#toDoListApp {
+    margin-bottom: 110px;
+}
+
 h1 {
     color: #555;
 }
@@ -8,4 +12,8 @@ h1 {
 .list-group-item:hover {
     background: #efefef;
     background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 50%, rgba(239,239,239,1) 100%);
+}
+
+.done {
+    text-decoration: line-through;
 }

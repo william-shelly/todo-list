@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/all.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <style>
+        .done {
+            text-decoration: line-through;
+        }
+
+        #task-list li {
+            margin-bottom: 10px;
+        }
+
+        .task-item {
+            display: inline-block;
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="cols-sm-8">
+                <h1>To Do List</h1>
+                <input id="new-task" type="text" class="form-control" placeholder="Add your task…">
+                <button id="add-task" class="btn btn-primary">Add Task</button>
+
+                <ul id="task-list"></ul>
+
+                <button id="clear-list" class="btn btn-secondary">Clear All Tasks</button>
+            </div>
+        </div>
+    </div>
+<script>
+
+var tasks = [];
+var addTask_btn = document.getElementById('add-task');
+var clearList_btn = document.getElementById('clear-list');
+
+addTask_btn.addEventListener('click', addTask);
+
+clearList_btn.addEventListener('click', function() {
+    tasks = [];
+    listTasks();
+});
+
+function addTask() {
+    let newTask_input = document.getElementById('new-task');
+    console.log(newTask_input.value);
+    tasks.push(newTask_input.value);
+
+    newTask_input.value = '';
+    newTask_input.focus();
+
+    listTasks();
+}
+
+function listTasks() {
+    let taskList = document.getElementById('task-list');
+
+    // let taskHTML = '';
+
+    taskList.innerHTML = '';
+
+    tasks.forEach(function(task) {
+        // taskHTML += '<li>' + task + '</li>';
+        let newTask = document.createElement('li');
+
+        let taskDone = document.createElement('input');
+        taskDone.type = 'checkbox';
+        taskDone.addEventListener('change', function(event) {
+            if (event.target.checked) {
+                event.target.nextSibling.classList.add('done');
+            } else {
+                event.target.nextSibling.classList.remove('done');
+            }
+        });
+
+        let taskText = document.createElement('span');
+        taskText.classList.add('task-item');
+        taskText.innerText = task;
+
+        let taskRemove = document.createElement('button');
+        // taskRemove.innerText = 'Remove';
+        taskRemove.classList.add('btn','btn-danger');
+        taskRemove.innerHTML = '<i class="fas fa-trash">';
+        taskRemove.addEventListener('click', removeTask);
+
+        newTask.appendChild(taskDone);
+        newTask.appendChild(taskText);
+        newTask.appendChild(taskRemove);
+
+        taskList.appendChild(newTask);
+    });
+
+    // taskList.innerHTML = taskHTML;
+
+};
+
+function removeTask(event) {
+    // console.log(event.target.previousSibling.innerText);
+
+    tasks = tasks.filter(function(task) {
+        if (task == event.target.previousSibling.innerText) {
+            return false;
+        } else {
+            return true;
+        }
+    });
+    listTasks();
+}
+
+
+</script>
+</body>
+</html>
