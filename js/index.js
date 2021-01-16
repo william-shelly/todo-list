@@ -123,19 +123,16 @@ function showListItems(i) {
 
 
 function removeListItem(e) {
-    console.log(e.target.parentNode.parentNode.querySelector('.list-item').innerText);
-    let json = toDoList;
-    obj = JSON.parse(JSON.stringify(json));
-    console.log(obj.item);
-    toDoList = toDoList.filter(function(item) {
-        if (item == e.target.parentNode.parentNode.querySelector('.list-item').innerText) {
-            // console.log('false');
+
+    toDoList = toDoList.filter(function(i) {
+        if (i.item == e.target.parentNode.parentNode.querySelector('.list-item').innerText) {
+            console.log('false');
             // console.log('item: ' + item);
             // console.log(e.target.parentNode.parentNode.querySelector('.list-item').innerText);
             return false;
         }
         else {
-            // console.log('true');
+            console.log('true');
             // console.log('item: ' + item);
             // console.log(e.target.parentNode.parentNode.querySelector('.list-item').innerText);
             return true;
