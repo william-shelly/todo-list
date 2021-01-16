@@ -110,6 +110,7 @@ function showListItems(i) {
         listItemDeleteBtn.setAttribute('id', 'deleteBtn' + toDoList[toDoList.length - 1]);
 
         listItemDeleteBtn.innerHTML ='<i class="fas fa-times-circle"></i>';
+        listItemDeleteBtn.addEventListener('click', removeListItem);
 
         listLabel.appendChild(listCheckbox);
         listLabel.appendChild(listItemContainer);
@@ -119,3 +120,28 @@ function showListItems(i) {
         toDoListContainer.appendChild(listLabel, toDoListContainer);
     };
 } // /showListItems
+
+
+function removeListItem(e) {
+    console.log(e.target.parentNode.parentNode.querySelector('.list-item').innerText);
+    let json = toDoList;
+    obj = JSON.parse(JSON.stringify(json));
+    console.log(obj.item);
+    toDoList = toDoList.filter(function(item) {
+        if (item == e.target.parentNode.parentNode.querySelector('.list-item').innerText) {
+            // console.log('false');
+            // console.log('item: ' + item);
+            // console.log(e.target.parentNode.parentNode.querySelector('.list-item').innerText);
+            return false;
+        }
+        else {
+            // console.log('true');
+            // console.log('item: ' + item);
+            // console.log(e.target.parentNode.parentNode.querySelector('.list-item').innerText);
+            return true;
+        }
+    });
+
+    showListItems();
+
+}
