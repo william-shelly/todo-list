@@ -2,6 +2,7 @@ var appName_txt, toDoListApp, instructionsContainer, appTitle, appName, toDoList
 
 appName_txt = 'To Do List';
 
+appIcon_txt = '<i class="fas fa-clipboard-list app-icon"></i>';
 
 toDoListApp = document.querySelector('#toDoListApp');
 
@@ -33,9 +34,13 @@ function startDateTime() {
 
 /* App title */
 
-appTitle.innerText = appName_txt;
+appTitle.innerHTML = appName_txt;
 
-appName.innerHTML = appName_txt;
+appName.innerHTML = appIcon_txt + ' ' + appName_txt;
+
+setTimeout(function () {
+    document.querySelector('.app-icon').classList.add('rotate-icon');
+}, 3000);
 
 /* /App title */
 
