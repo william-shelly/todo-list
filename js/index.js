@@ -1,15 +1,15 @@
-var appName_txt, toDoListApp, appTitle, appName, toDoList, addToDoItem, deleteAllItems;
+var appName_txt, toDoListApp, instructionsContainer, appTitle, appName, toDoList, addToDoItem, deleteAllItems;
 
-appName_txt = 'William\'s To Do List';
+appName_txt = 'To Do List';
 
 
 toDoListApp = document.querySelector('#toDoListApp');
 
+instructionsContainer = document.createElement('div');
+
 appTitle = document.querySelector('title');
 
 appName = document.querySelector('h1.appName');
-
-
 
 addToDoItem = document.querySelector('#addToDoItem');
 
@@ -27,7 +27,7 @@ appName.innerHTML = appName_txt;
 
 /* Change this to an empty array */
 
-toDoList = [
+/* toDoList = [
     {   "id": 0,
         "item": "WORK ON SPEXTON",
         "status": false
@@ -56,9 +56,28 @@ toDoList = [
         "item": "Fly Kite",
         "status": false
     }
-];
+]; */
 
-// toDoList = [];
+toDoList = [];
+
+function checkForEmptyList() {
+    if(toDoList == '')  {
+        /* Create an element */
+        let toDoListContainer = document.querySelector('#toDoListContainer');
+
+        instructionsContainer.id = 'instructionsContainer'
+        instructionsContainer.className = 'mt-2 p-4 border border-secondary bg-white border-1 rounded-3 text-center shadow-sm fade';
+
+        /* Create the text node */
+
+        let instructionsTxt = document.createTextNode('To begin, type your item in the field below and then press the + button.');
+
+        instructionsContainer.appendChild(instructionsTxt);
+
+        /* Place one child note inside another */
+        toDoListContainer.appendChild(instructionsContainer);
+    }
+};
 
 /* .toDoListArray */
 
@@ -66,14 +85,20 @@ addToDoItem.addEventListener('click', addListItem);
 
 deleteAllItems.addEventListener('click', deleteAllListItems);
 
+/* this is not getting the toDoList.length */
 function addListItem() {
-    let newTask = document.querySelector('#newTask');
-    if ( newTask.value !== '') {
-        console.log(newTask.value);
-        toDoList.push({"id": toDoList[toDoList.length - 1].id + 1 ,"item": newTask.value ,"status":false});
-        console.log(toDoList);
-        newTask.focus();
-        newTask.value = '';
+    let newItem = document.querySelector('#newItem');
+    if ( newItem.value !== '') {
+        if(toDoList !== '')  {
+            console.log('not empty');
+            toDoList.push({"id": toDoList[0] ,"item": newItem.value ,"status":false});
+
+        } else {
+            console.log('empty');
+            toDoList.push({"id": toDoList[toDoList.length - 1].id + 1 ,"item": newItem.value ,"status":false});
+        }
+        newItem.focus();
+        newItem.value = '';
         showListItems();
     }
 }
@@ -83,7 +108,6 @@ function showListItems(i) {
     toDoListContainer.innerHTML = '';
 
     for (let i = 0; i < toDoList.length; i++ ) {
-        console.log(toDoList[i]);
         // create label
         let listLabel = document.createElement('label');
         // label .list-group-item
@@ -91,27 +115,22 @@ function showListItems(i) {
         // create input
         listCheckbox = document.createElement('input');
         // input .form-check-input .me-0
-        listCheckbox.className = 'form-check-input m-0 me-2 align-baseline';
+        listCheckbox.className = 'form-check-input m-0 me-2 align-text-bottom';
         // input [type='checkbox'] [value='']
         listCheckbox.setAttribute('type', 'checkbox');
         listCheckbox.addEventListener('change', function(e) {
             if (e.target.checked) {
                 e.target.parentNode.classList.add('done');
-                // e.target.nextSibling.classList.add('done');
-                console.log('statusChecker true');
                 toDoList[i].status = true;
                 this.setAttribute('CHECKED', '');
                 this.setAttribute('value', true);
             }
             else {
-                // e.target.nextSibling.classList.remove('done');
                 e.target.parentNode.classList.remove('done');
-                console.log('statusChecker false');
                 toDoList[i].status = false;
                 this.removeAttribute('CHECKED');
                 this.setAttribute('value', false);
             }
-            console.log(toDoList);
         });
         listCheckbox.setAttribute('value', toDoList[i].status);
         // item coffee
@@ -126,9 +145,8 @@ function showListItems(i) {
 
         // Delete Button
         let listItemDeleteBtn = document.createElement('button');
-        listItemDeleteBtn.className = 'btn bg-transparent text-danger m-0 px-1 py-0 border-0 align-baseline position-absolute end-0 delete_btn';
+        listItemDeleteBtn.className = 'btn bg-transparent text-danger m-0 me-2 px-1 py-0 border-0 align-baseline position-absolute end-0 delete_btn';
         listItemDeleteBtn.setAttribute('type', 'button');
-        // listItemDeleteBtn.setAttribute('id', 'deleteBtn' + toDoList[toDoList.length - 1]);
 
         listItemDeleteBtn.innerHTML ='<i class="fas fa-times-circle"></i>';
         listItemDeleteBtn.addEventListener('click', removeListItem);
@@ -152,10 +170,27 @@ function removeListItem(e) {
             return true;
         }
     });
+    newItem.focus();
     showListItems();
 }
 
 function deleteAllListItems(e) {
-    toDoList = [];
-    showListItems();
+    let areYouSure = confirm('Are you sure you would like to delete your To Do List?');
+    if (areYouSure == true) {
+        newItem.focus();
+        toDoList = [];
+        showListItems();
+        instructionsContainer.innerText = '';
+        checkForEmptyList();
+        setTimeout(function () {
+            instructionsContainer.classList.add('show');
+        }, 1000);
+    }
 }
+
+document.addEventListener('DOMContentLoaded', function(){
+    checkForEmptyList();
+    setTimeout(function () {
+        instructionsContainer.classList.add('show');
+    }, 500);
+});

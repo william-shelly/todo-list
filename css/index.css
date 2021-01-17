@@ -1,3 +1,13 @@
+html, body {
+    height: 100%;
+}
+body {
+    font-family: 'Oxygen', Arial, Helvetica, sans-serif;
+    background-color: #e3e3e3;
+    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(227,227,227,1) 100%);
+
+}
+
 #toDoListApp {
     margin-bottom: 110px;
 }
@@ -16,4 +26,11 @@ h1 {
 
 .done {
     text-decoration: line-through;
+    color: #999;
+    transition: all .3 ease-in-out .3;
+}
+
+.form-check-input:checked {
+    background-color: #555;
+    border-color: #555;
 }
