@@ -12,24 +12,26 @@
     <link rel="stylesheet" href="css/index.css" />
 </head>
 <body>
-    <div class="container-fluid header-container">
-        <header class="container pt-4">
-            <h1 class="appName mt-4"></h1>
-            <h2 id="dateTime" class="position-fixed top-0 end-0 mt-2 me-0 px-2 py-1 fs-6 bg-white border border-white border-2 rounded-start rounded-3 shadow-sm"></h2>
-        </header>
-    </div>
-    <div id="toDoListApp" class="container py-4">
-        <div id="toDoListContainer" class="list-group"></div>
-    </div>
-    <div id="toDoListAddItemContainer" class="container-fluid fixed-bottom bg-white py-4 border-top fixed-bottom">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <input id="newItem" type="text" class="form-control"  placeholder="Add To Do Item">
-                </div>
-                <div class="col-auto">
-                    <button id="addToDoItem" type="button" class="btn btn-success mb-3 border-success border-0 rounded-circle"><i class="fas fa-plus"></i></button>
-                    <button id="deleteAllItems" type="button" class="btn btn-danger mb-3 border-success border-0 rounded-circle"><i class="far fa-trash-alt"></i></button>
+    <div class="app-container">
+        <div class="container-fluid header-container">
+            <header class="container pt-4">
+                <h1 class="appName mt-4"></h1>
+                <h2 id="dateTime" class="position-fixed top-0 end-0 mt-2 me-0 px-2 py-1 fs-6 bg-white border border-white border-2 rounded-start rounded-3 shadow-sm"></h2>
+            </header>
+        </div>
+        <div id="toDoListApp" class="container py-4">
+            <div id="toDoListContainer" class="list-group"></div>
+        </div>
+        <div id="toDoListAddItemContainer" class="container-fluid fixed-bottom bg-white py-4 border-top fixed-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <input id="newItem" type="text" class="form-control"  placeholder="Add To Do Item">
+                    </div>
+                    <div class="col-auto">
+                        <button id="addToDoItem" type="button" class="btn btn-success mb-3 border-success border-0 rounded-circle transition scale_lg"><i class="fas fa-plus"></i></button>
+                        <button id="deleteAllItems" type="button" class="btn btn-danger mb-3 border-success border-0 rounded-circle transition scale_lg"><i class="far fa-trash-alt"></i></button>
+                    </div>
                 </div>
             </div>
         </div>

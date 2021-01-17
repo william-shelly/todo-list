@@ -91,7 +91,7 @@ function checkForEmptyList() {
 
         /* Create the text node */
 
-        let instructionsTxt = document.createTextNode('To begin, type your item in the field below and then press the + button.');
+        let instructionsTxt = document.createTextNode('Type the item in the field below. Then press the return key or + button to the add the item to the list.');
 
         instructionsContainer.appendChild(instructionsTxt);
 
@@ -171,7 +171,7 @@ function showListItems(i) {
 
         // Delete Button
         let listItemDeleteBtn = document.createElement('button');
-        listItemDeleteBtn.className = 'btn bg-transparent text-danger m-0 me-2 px-1 py-0 border-0 align-baseline position-absolute end-0 delete_btn';
+        listItemDeleteBtn.className = 'btn bg-transparent text-danger m-0 me-2 px-1 py-0 border-0 align-baseline position-absolute end-0 delete_btn transition scale_xl';
         listItemDeleteBtn.setAttribute('type', 'button');
 
         listItemDeleteBtn.innerHTML ='<i class="fas fa-times-circle"></i>';
