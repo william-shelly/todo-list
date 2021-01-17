@@ -1,4 +1,4 @@
-var appName_txt, toDoListApp, appTitle, appName, toDoList, addToDoItem;
+var appName_txt, toDoListApp, appTitle, appName, toDoList, addToDoItem, deleteAllItems;
 
 appName_txt = 'William\'s To Do List';
 
@@ -12,6 +12,8 @@ appName = document.querySelector('h1.appName');
 
 
 addToDoItem = document.querySelector('#addToDoItem');
+
+deleteAllItems = document.querySelector('#deleteAllItems');
 
 /* App title */
 
@@ -61,6 +63,8 @@ toDoList = [
 /* .toDoListArray */
 
 addToDoItem.addEventListener('click', addListItem);
+
+deleteAllItems.addEventListener('click', deleteAllListItems);
 
 function addListItem() {
     let newTask = document.querySelector('#newTask');
@@ -148,5 +152,10 @@ function removeListItem(e) {
             return true;
         }
     });
+    showListItems();
+}
+
+function deleteAllListItems(e) {
+    toDoList = [];
     showListItems();
 }
