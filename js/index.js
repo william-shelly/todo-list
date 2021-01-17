@@ -1,4 +1,4 @@
-var appName_txt, toDoListApp, instructionsContainer, appTitle, appName, toDoList, addToDoItem, deleteAllItems;
+var appName_txt, toDoListApp, instructionsContainer, appTitle, appName, toDoList, newItem, addToDoItem, deleteAllItems;
 
 appName_txt = 'To Do List';
 
@@ -12,11 +12,11 @@ appTitle = document.querySelector('title');
 
 appName = document.querySelector('h1.appName');
 
+newItem = document.querySelector('#newItem');
+
 addToDoItem = document.querySelector('#addToDoItem');
 
 deleteAllItems = document.querySelector('#deleteAllItems');
-
-
 
 function startDateTime() {
     let d = new Date();
@@ -104,11 +104,16 @@ function checkForEmptyList() {
 
 addToDoItem.addEventListener('click', addListItem);
 
+newItem.addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+        addListItem();
+    }
+});
+
 deleteAllItems.addEventListener('click', deleteAllListItems);
 
 /* this is not getting the toDoList.length */
 function addListItem() {
-    let newItem = document.querySelector('#newItem');
     if ( newItem.value !== '') {
         if(toDoList !== '')  {
             console.log('not empty');
