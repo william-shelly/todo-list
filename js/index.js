@@ -90,21 +90,22 @@ function showListItems(i) {
         listCheckbox.className = 'form-check-input m-0 me-2 align-baseline';
         // input [type='checkbox'] [value='']
         listCheckbox.setAttribute('type', 'checkbox');
-        if (toDoList[i].status === true) {
-            listCheckbox.setAttribute('CHECKED', '');
-        }
         listCheckbox.addEventListener('change', function(e) {
             if (e.target.checked) {
-                e.target.nextSibling.classList.add('done');
+                e.target.parentNode.classList.add('done');
+                // e.target.nextSibling.classList.add('done');
                 console.log('statusChecker true');
                 toDoList[i].status = true;
-                listCheckbox.setAttribute('CHECKED', '');
+                this.setAttribute('CHECKED', '');
+                this.setAttribute('value', true);
             }
             else {
-                e.target.nextSibling.classList.remove('done');
+                // e.target.nextSibling.classList.remove('done');
+                e.target.parentNode.classList.remove('done');
                 console.log('statusChecker false');
                 toDoList[i].status = false;
-                listCheckbox.removeAttribute('CHECKED');
+                this.removeAttribute('CHECKED');
+                this.setAttribute('value', false);
             }
             console.log(toDoList);
         });
@@ -112,7 +113,11 @@ function showListItems(i) {
         // item coffee
         let listItemContainer = document.createElement('span');
         listItemContainer.classList.add('list-item');
-
+        if (toDoList[i].status === true) {
+            listCheckbox.setAttribute('CHECKED', '');
+            listCheckbox.setAttribute('value', true);
+            listItemContainer.classList.add('done');
+        }
         let listItem = document.createTextNode(toDoList[i].item);
 
         // Delete Button
