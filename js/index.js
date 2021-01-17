@@ -15,6 +15,22 @@ addToDoItem = document.querySelector('#addToDoItem');
 
 deleteAllItems = document.querySelector('#deleteAllItems');
 
+
+
+function startDateTime() {
+    let d = new Date();
+    let day = d.getDay();
+    let dayName = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    let month = d.getMonth();
+    let monthName = ['January','February','March','April','May','June','July','August','September','October','November','December']
+    let date = d.getDate();
+    let year = d.getFullYear();
+    // let time = d.getTime();
+
+    let dateTimeContainer = document.querySelector('#dateTime');
+    dateTimeContainer.innerHTML = '<strong>Today</strong>: ' + dayName[day] + ', ' + monthName[month] + ' ' + date + ', ' + year + ' ';
+}
+
 /* App title */
 
 appTitle.innerText = appName_txt;
@@ -29,31 +45,31 @@ appName.innerHTML = appName_txt;
 
 /* toDoList = [
     {   "id": 0,
-        "item": "WORK ON SPEXTON",
+        "item": "red",
         "status": false
     },
     {   "id": 1,
-        "item": "WORK ON AIR-O",
+        "item": "yellow",
         "status": false
     },
     {   "id": 2,
-        "item": "Fix Fence",
+        "item": "blue",
         "status": false
     },
     {   "id": 3,
-        "item": "Wash Car",
+        "item": "green",
         "status": false
     },
     {   "id": 4,
-        "item": "Clean Interior",
+        "item": "purple",
         "status": false
     },
     {   "id": 5,
-        "item": "Get Groceries",
+        "item": "orange",
         "status": true
     },
     {   "id": 6,
-        "item": "Fly Kite",
+        "item": "white",
         "status": false
     }
 ]; */
@@ -175,7 +191,7 @@ function removeListItem(e) {
 }
 
 function deleteAllListItems(e) {
-    let areYouSure = confirm('Are you sure you would like to delete your To Do List?');
+    let areYouSure = confirm('Are you sure you would like to delete all items in the To Do List?');
     if (areYouSure == true) {
         newItem.focus();
         toDoList = [];
@@ -193,4 +209,6 @@ document.addEventListener('DOMContentLoaded', function(){
     setTimeout(function () {
         instructionsContainer.classList.add('show');
     }, 500);
+    startDateTime();
+    newItem.focus();
 });
