@@ -117,11 +117,11 @@ function addListItem() {
     if ( newItem.value !== '') {
         if(toDoList !== '')  {
             console.log('not empty');
-            toDoList.push({"id": toDoList[0] ,"item": newItem.value ,"status":false});
+            toDoList.push({"id": Date.now() ,"item": newItem.value ,"status":false});
 
         } else {
             console.log('empty');
-            toDoList.push({"id": toDoList[toDoList.length - 1].id + 1 ,"item": newItem.value ,"status":false});
+/*            toDoList.push({"id": toDoList[toDoList.length - 1].id + 1 ,"item": newItem.value ,"status":false}); */
         }
         newItem.focus();
         newItem.value = '';
@@ -137,6 +137,7 @@ function showListItems(i) {
         // create label
         let listLabel = document.createElement('label');
         // label .list-group-item
+        listLabel.id = 'listLabel' + toDoList[i].id;
         listLabel.className = 'list-group-item align-baseline position-relative fade show';
         // create input
         listCheckbox = document.createElement('input');
@@ -173,7 +174,7 @@ function showListItems(i) {
         let listItemDeleteBtn = document.createElement('button');
         listItemDeleteBtn.className = 'btn bg-transparent text-danger m-0 me-2 px-1 py-0 border-0 align-baseline position-absolute end-0 delete_btn transition scale_xl';
         listItemDeleteBtn.setAttribute('type', 'button');
-
+        listItemDeleteBtn.dataset.id = toDoList[i].id;
         listItemDeleteBtn.innerHTML ='<i class="fas fa-times-circle"></i>';
         listItemDeleteBtn.addEventListener('click', removeListItem);
 
