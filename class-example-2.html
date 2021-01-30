@@ -42,128 +42,129 @@
 		</div>
 
 	</div>
+	<script src="scripts/main.js" type="module"></script>
 
 	<script>
 
 		var tasks = [];
 
-		document.getElementById("add-task").addEventListener('click', addTask);
+		// document.getElementById("add-task").addEventListener('click', addTask);
 		document.getElementById("clear-list").addEventListener('click', function() {
 			tasks = [];
 			listTasks();
 		});
 
-		function addTask() {
+		// function addTask() {
 
-			let newTask = document.getElementById('new-task');
+		// 	let newTask = document.getElementById('new-task');
 
-			console.log('adding a task...' + newTask.value );
+		// 	console.log('adding a task...' + newTask.value );
 
-			tasks.push({
-				id: Date.now(),
-				name: newTask.value,
-				status: false,
-				created: new Date()
-			});
+		// 	tasks.push({
+		// 		id: Date.now(),
+		// 		name: newTask.value,
+		// 		status: false,
+		// 		created: new Date()
+		// 	});
 
-			newTask.value = '';
+		// 	newTask.value = '';
 
-			console.log(tasks);
+		// 	console.log(tasks);
 
-			listTasks();
-		}
+		// 	listTasks();
+		// }
 
-		function listTasks() {
-			let taskList = document.getElementById('task-list');
+		// function listTasks() {
+		// 	let taskList = document.getElementById('task-list');
 
-			// let taskHtml = '';
-			taskList.innerHTML = '';
+		// 	// let taskHtml = '';
+		// 	taskList.innerHTML = '';
 
-			tasks.forEach(function(task) {
-				// taskHtml += '<li>' + task + '</li>';
+		// 	tasks.forEach(function(task) {
+		// 		// taskHtml += '<li>' + task + '</li>';
 
-				let newTask = document.createElement('li');
+		// 		let newTask = document.createElement('li');
 
-				let taskDone = document.createElement('input');
-				taskDone.type = 'checkbox';
-				taskDone.addEventListener('change', function(event) {
-					if (event.target.checked) {
-						task.status = true;
-						event.target.nextSibling.classList.add('done');
-					}
-					else {
-						task.status = false;
-						event.target.nextSibling.classList.remove('done');
-					}
-				});
+		// 		let taskDone = document.createElement('input');
+		// 		taskDone.type = 'checkbox';
+		// 		taskDone.addEventListener('change', function(event) {
+		// 			if (event.target.checked) {
+		// 				task.status = true;
+		// 				event.target.nextSibling.classList.add('done');
+		// 			}
+		// 			else {
+		// 				task.status = false;
+		// 				event.target.nextSibling.classList.remove('done');
+		// 			}
+		// 		});
 
-				let taskText = document.createElement('span');
-				taskText.classList.add('task-item');
-				if (task.status == true) {
-					taskText.classList.add('done');
-					taskDone.checked = true;
-				} else {
-					taskText.classList.remove('done');
-					taskDone.checked = false;
-				}
-				taskText.innerText = task.name + ", created at: " + toShortTime(task.created);
+		// 		let taskText = document.createElement('span');
+		// 		taskText.classList.add('task-item');
+		// 		if (task.status == true) {
+		// 			taskText.classList.add('done');
+		// 			taskDone.checked = true;
+		// 		} else {
+		// 			taskText.classList.remove('done');
+		// 			taskDone.checked = false;
+		// 		}
+		// 		taskText.innerText = task.name + ", created at: " + toShortTime(task.created);
 
-				let taskRemove = document.createElement('button');
-				taskRemove.dataset.id = task.id;
-				taskRemove.innerText = 'Remove';
-				taskRemove.classList.add('btn');
-				taskRemove.classList.add('btn-danger');
-				// taskRemove.innerHTML = '<i class="fas fa-trash-can"></i>';
-				taskRemove.addEventListener('click', removeTask);
+		// 		let taskRemove = document.createElement('button');
+		// 		taskRemove.dataset.id = task.id;
+		// 		taskRemove.innerText = 'Remove';
+		// 		taskRemove.classList.add('btn');
+		// 		taskRemove.classList.add('btn-danger');
+		// 		// taskRemove.innerHTML = '<i class="fas fa-trash-can"></i>';
+		// 		taskRemove.addEventListener('click', removeTask);
 
-				newTask.appendChild(taskDone);
-				newTask.appendChild(taskText);
-				newTask.appendChild(taskRemove);
+		// 		newTask.appendChild(taskDone);
+		// 		newTask.appendChild(taskText);
+		// 		newTask.appendChild(taskRemove);
 
 
-				taskList.appendChild(newTask);
+		// 		taskList.appendChild(newTask);
 
-			});
+		// 	});
 
-			// taskList.innerHTML = taskHtml;
+		// 	// taskList.innerHTML = taskHtml;
 
-		}
+		// }
 
-		function toPrettyDate(date) {
-			return toShortDate(date) + " " + toShortTime(date);
-		}
+		// function toPrettyDate(date) {
+		// 	return toShortDate(date) + " " + toShortTime(date);
+		// }
 
-		function toShortDate(date) {
-			let month = date.getMonth() + 1;
-			let day = date.getDate();
-			let year = date.getFullYear();
-		}
+		// function toShortDate(date) {
+		// 	let month = date.getMonth() + 1;
+		// 	let day = date.getDate();
+		// 	let year = date.getFullYear();
+		// }
 
-		// date is a dateObject
-		// date parameter allows to read task vairable out side of scoke
-		// date links and replaces to task.created
-		function toShortTime(date) {
-			let hours = date.getHours();
-			let minutes = date.getMinutes();
-			let seconds = date.getSeconds();
-			let ampm = "am";
+		// // date is a dateObject
+		// // date parameter allows to read task variable out side of scope
+		// // date links and replaces to task.created
+		// function toShortTime(date) {
+		// 	let hours = date.getHours();
+		// 	let minutes = date.getMinutes();
+		// 	let seconds = date.getSeconds();
+		// 	let ampm = "am";
 
-			if (hours > 12) {
-				hours -= 12;
-				ampm = "pm";
-			}
+		// 	if (hours > 12) {
+		// 		hours -= 12;
+		// 		ampm = "pm";
+		// 	}
 
-			if (minutes < 10 ) {
-				minutes = "0" + minutes;
-			}
+		// 	if (minutes < 10 ) {
+		// 		minutes = "0" + minutes;
+		// 	}
 
-			if (seconds < 10 ) {
-				seconds = "0" + seconds;
-			}
+		// 	if (seconds < 10 ) {
+		// 		seconds = "0" + seconds;
+		// 	}
 
-			let time = hours + ':' + minutes + ':'+ seconds + ' ' + ampm;
-			return time;
-		}
+		// 	let time = hours + ':' + minutes + ':'+ seconds + ' ' + ampm;
+		// 	return time;
+		// }
 
 		function removeTask(event) {
 
