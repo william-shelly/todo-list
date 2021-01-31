@@ -70,5 +70,5 @@ setTimeout(function () {
 
 document.addEventListener('DOMContentLoaded', function(){
     startDateTime();
-    newItem.focus();
+    newTask.focus();
 });
