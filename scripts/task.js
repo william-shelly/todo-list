@@ -11,7 +11,13 @@ export class Task {
     }
 
     toggleStatus() {
-        console.log('can\'t toggle yet');
+        // console.log('can\'t toggle yet');
+        this.status = !this.status;
+        // console.log("Task status is now: " + this.status);
+    }
+
+    getInfo() {
+        return this.name + " was created at: " + this.toPrettyDate();
     }
 
     toPrettyDate() {

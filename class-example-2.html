@@ -49,10 +49,10 @@
 		var tasks = [];
 
 		// document.getElementById("add-task").addEventListener('click', addTask);
-		document.getElementById("clear-list").addEventListener('click', function() {
-			tasks = [];
-			listTasks();
-		});
+		// document.getElementById("clear-list").addEventListener('click', function() {
+		// 	tasks = [];
+		// 	listTasks();
+		// });
 
 		// function addTask() {
 
@@ -166,21 +166,21 @@
 		// 	return time;
 		// }
 
-		function removeTask(event) {
+		// function removeTask(event) {
 
-			// console.log(event.target);
+		// 	// console.log(event.target);
 
-			tasks = tasks.filter(function(task) {
-				if (task.id == event.target.dataset.id) {
-					return false;
-				}
-				else {
-					return true;
-				}
-			});
+		// 	tasks = tasks.filter(function(task) {
+		// 		if (task.id == event.target.dataset.id) {
+		// 			return false;
+		// 		}
+		// 		else {
+		// 			return true;
+		// 		}
+		// 	});
 
-			listTasks();
-		}
+		// 	listTasks();
+		// }
 
 
 	</script>
