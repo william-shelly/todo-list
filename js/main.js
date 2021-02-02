@@ -55,7 +55,7 @@ function startDateTime() {
     // let time = d.getTime();
 
     let dateTimeContainer = document.querySelector('#dateTime');
-    dateTimeContainer.innerHTML = '<strong>Today</strong>: ' + dayName[day] + ', ' + monthName[month] + ' ' + date + ', ' + year + ' ';
+    dateTimeContainer.innerHTML = dayName[day] + ', ' + monthName[month] + ' ' + date + ', ' + year + ' ';
 }
 
 /* App title */

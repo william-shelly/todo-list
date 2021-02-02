@@ -41,27 +41,24 @@ export class TaskList {
 
             newTask.className = 'list-group-item align-baseline position-relative fade show';
 
-
             let taskDone = document.createElement('input');
 
-            taskDone.className = 'form-check-input m-0 me-2 align-text-bottom';
+            taskDone.className = 'form-check-input m-0 me-2 align-baseline';
 
             taskDone.type = 'checkbox';
             taskDone.addEventListener('change', function(event) {
                 task.toggleStatus();
 
                 if (event.target.checked) {
-                    // task.status = true;
                     event.target.nextSibling.classList.add('done');
                 }
                 else {
-                    // task.status = false;
                     event.target.nextSibling.classList.remove('done');
                 }
             });
 
             let taskText = document.createElement('span');
-            taskText.classList.add('task-item');
+            taskText.classList.add('task-item','d-inline-block','fs-6','align-text-bottom');
             if (task.status == true) {
                 taskText.classList.add('done');
                 taskDone.checked = true;
@@ -69,7 +66,7 @@ export class TaskList {
                 taskText.classList.remove('done');
                 taskDone.checked = false;
             }
-            taskText.innerText = task.getInfo();
+            taskText.innerHTML = task.getInfo();
 
             let taskRemove = document.createElement('button');
             taskRemove.dataset.id = task.id;

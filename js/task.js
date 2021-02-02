@@ -12,22 +12,26 @@ export class Task {
 
     toggleStatus() {
         // console.log('can\'t toggle yet');
+        // this toggles the status to the opposite state
         this.status = !this.status;
         // console.log("Task status is now: " + this.status);
     }
 
     getInfo() {
-        return this.name + " was created at: " + this.toPrettyDate();
+        return this.name + ': ' + this.toPrettyDate();
     }
 
     toPrettyDate() {
         return this.toShortDate(this.created) + " " + this.toShortTime(this.created);
     }
 
-    toShortDate(date) {
-        let month = date.getMonth() + 1;
-        let day = date.getDate();
-        let year = date.getFullYear();
+    toShortDate(shortDate) {
+        let month = shortDate.getMonth() + 1;
+        let day = shortDate.getDate();
+        let year = shortDate.getFullYear();
+
+        shortDate = month + '/' + day + '/' + year;
+        return shortDate;
     }
 
     // date is a dateObject
