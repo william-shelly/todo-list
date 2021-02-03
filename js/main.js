@@ -40,10 +40,6 @@ clearList.addEventListener('click', function() {
     taskList.clearTasks();
 });
 
-function removeTask(event) {
-    taskList.removeTask(event.target.dataset.id);
-}
-
 function startDateTime() {
     let d = new Date();
     let day = d.getDay();

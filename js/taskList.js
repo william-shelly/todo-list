@@ -8,17 +8,27 @@ export class TaskList {
     }
 
     addTask(name) {
-        let task = new Task(this.tasks.length, name);
+        let task = new Task(Date.now(), name);
         this.tasks.push(task);
-
+        console.log("Added: " + task.getInfo());
         console.log(this.tasks);
-        console.log('Added: ' + task.getInfo());
 
         this.listTasks();
     }
 
-    removeTask(task) {
-        console.log('Can\'t Remove Tasks yet');
+    removeTask(event) {
+        console.log("Removing Task ID # " + event.target.dataset.id);
+
+        this.tasks = this.tasks.filter(function(task) {
+            if (task.id == event.target.dataset.id) {
+                return false;
+            }
+            else {
+                return true;
+            }
+        });
+
+        this.listTasks();
     }
 
     clearTasks() {
@@ -29,6 +39,7 @@ export class TaskList {
 
     listTasks() {
         let taskList = document.getElementById('task-list');
+        let removeHandler = this.removeTask.bind(this);
 
         taskList.innerHTML = '';
 
@@ -40,11 +51,9 @@ export class TaskList {
             newTask.dataset.id = task.id;
 
             newTask.className = 'list-group-item align-baseline position-relative fade show';
-
             let taskDone = document.createElement('input');
 
             taskDone.className = 'form-check-input m-0 me-2 align-baseline';
-
             taskDone.type = 'checkbox';
             taskDone.addEventListener('change', function(event) {
                 task.toggleStatus();
@@ -70,12 +79,12 @@ export class TaskList {
 
             let taskRemove = document.createElement('button');
             taskRemove.dataset.id = task.id;
-            // taskRemove.innerText = 'Remove';
-            taskRemove.innerHTML ='<i class="fas fa-times-circle"></i>';
-            taskRemove.className = 'btn bg-transparent text-danger m-0 me-2 px-1 py-0 border-0 align-baseline position-absolute end-0 delete_btn transition scale_xl';
-            taskRemove.addEventListener('click', function(event) {
-                console.log('this isn\'t working yet!');
-            });
+            taskRemove.innerHTML = '&#10006;';
+            taskRemove.classList.add('btn','btn','bg-transparent','text-danger','m-0','me-2','px-1','py-0','border-0','align-baseline','position-absolute','end-0','delete_btn','transition','scale_xl');
+            // Font Awesome or innerHTML doesnt' work for some reason. removes data-set.
+            //taskRemove.innerHTML ='<i class="fas fa-times-circle"></i>';
+            //taskRemove.className = 'btn bg-transparent text-danger m-0 me-2 px-1 py-0 border-0 align-baseline position-absolute end-0 delete_btn transition scale_xl';
+            taskRemove.addEventListener('click', removeHandler);
 
             newTask.appendChild(taskDone);
             newTask.appendChild(taskText);
